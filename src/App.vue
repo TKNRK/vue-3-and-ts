@@ -1,19 +1,33 @@
 <template>
-<div>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <router-link to="/hello">Uaaaaaaa!!!</router-link>
-  <router-link to="/bye">Oaaaaa!!!</router-link>
-  <router-view></router-view>
-</div>
+  <div>
+    <img alt="Vue logo" src="./assets/logo.png" />
+    <router-link to="/hello">Uaaaaaaa!!!</router-link>
+    <router-link to="/bye">Oaaaaa!!!</router-link>
+    <router-view></router-view>
+    <button v-on:click="reverse">Clicked: {{ count }}</button>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { useStore } from "vuex";
+import { key } from "./stores";
 
 export default defineComponent({
   name: "App",
-  components: {
-  }
+  components: {},
+  methods: {
+    reverse() {
+      const store = useStore(key);
+      store.commit("increment");
+    },
+  },
+  computed: {
+    count() {
+      const store = useStore(key);
+      return store.getters.count;
+    },
+  },
 });
 </script>
 
