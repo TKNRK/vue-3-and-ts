@@ -11,20 +11,19 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { useStore } from "vuex";
-import { key } from "./stores";
 
 export default defineComponent({
   name: "App",
   components: {},
   methods: {
     reverse() {
-      const store = useStore(key);
+      const store = useStore();
       store.commit("increment");
     },
   },
   computed: {
     count() {
-      const store = useStore(key);
+      const store = useStore();
       return store.getters.count;
     },
   },
