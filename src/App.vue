@@ -9,24 +9,23 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { computed, defineComponent } from "vue";
 import { useStore } from "vuex";
 
 export default defineComponent({
   name: "App",
+  setup() {
+    const store = useStore()
+    return {
+      reverse: () => {
+        store.commit("hoge/increment")
+      },
+      count: computed(() => {
+        return store.getters["hoge/count"]
+      })
+    }
+  },
   components: {},
-  methods: {
-    reverse() {
-      const store = useStore();
-      store.commit("increment");
-    },
-  },
-  computed: {
-    count() {
-      const store = useStore();
-      return store.getters.count;
-    },
-  },
 });
 </script>
 

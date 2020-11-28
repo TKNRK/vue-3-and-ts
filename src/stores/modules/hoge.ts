@@ -1,6 +1,8 @@
-import { State } from 'vue';
+type State = {
+    count: number
+}
 
-const state = {
+const state: State = {
     count: 1
 }
 
@@ -11,7 +13,7 @@ const mutations = {
 }
 
 const getters = {
-    count(state: State) {
+    count(state: State): number {
         return state.count;
     }
 }
